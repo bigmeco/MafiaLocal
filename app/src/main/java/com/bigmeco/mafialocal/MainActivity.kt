@@ -1,7 +1,7 @@
 package com.bigmeco.mafialocal
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.ui.core.setContent
 import androidx.ui.foundation.Text
