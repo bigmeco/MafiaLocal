@@ -1,5 +1,6 @@
 package com.bigmeco.mafialocal
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.animation.FastOutLinearInEasing
 import androidx.animation.FloatPropKey
@@ -38,6 +39,7 @@ class SplashActivity : AppCompatActivity() {
                     })
             }
         }
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
 
@@ -56,7 +58,6 @@ class SplashActivity : AppCompatActivity() {
             )
         }
     }
-
 
 
     @Preview

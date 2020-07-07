@@ -3,13 +3,16 @@ package com.bigmeco.mafialocal
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
+import androidx.core.graphics.rotationMatrix
 import androidx.ui.core.Modifier
+import androidx.ui.core.drawLayer
 import androidx.ui.core.setContent
 import androidx.ui.foundation.Canvas
 import androidx.ui.foundation.Image
 import androidx.ui.foundation.Text
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.drawscope.rotate
+import androidx.ui.graphics.vectormath.rotation
 import androidx.ui.layout.preferredSize
 import androidx.ui.material.MaterialTheme
 import androidx.ui.res.colorResource
@@ -30,8 +33,9 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun Host() {
-
-     Text(text = "Пользователь")
+     Text(text = "Пользователь",modifier =
+     Modifier.drawLayer(rotationZ =
+     320f))
 }
 
 
@@ -43,11 +47,4 @@ fun DefaultPreview() {
         Host()
     }
 }
-@Composable
-fun Rotate() {
-    Canvas(modifier = Modifier.preferredSize(200.dp)) {
-        rotate(45F) {
-            drawRect(color = Color(255, 138, 128))
-        }
-    }
-}
+
