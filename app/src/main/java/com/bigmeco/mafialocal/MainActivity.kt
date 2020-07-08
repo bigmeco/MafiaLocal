@@ -58,7 +58,7 @@ fun Host() {
                 Box(
                     gravity = Alignment.BottomCenter,
                     modifier = Modifier.fillMaxSize().plus(Modifier.weight(1f)).plus(
-                        Modifier.drawBackground(color = Color.Blue)
+                        Modifier.drawBackground(color = Color.Red)
                     ).plus(Modifier.padding(horizontal = 1000.dp))
                         .plus(Modifier.clickable(onClick = {
                         }))
@@ -67,7 +67,7 @@ fun Host() {
                     Text(
                         text = "Ведущий",
                         fontSize = TextUnit(28),
-                        modifier = Modifier.padding(46.dp)
+                        modifier = Modifier.padding(horizontal = 320.dp,vertical = 46.dp)
                     )
                 }
 
@@ -81,7 +81,7 @@ fun Host() {
                 ) {
                     Text(
                         text = "Игрок", fontSize = TextUnit(28),
-                        modifier = Modifier.padding(46.dp)
+                        modifier = Modifier.padding(horizontal = 320.dp,vertical = 46.dp)
                     )
                 }
             }
