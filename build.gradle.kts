@@ -6,7 +6,6 @@ buildscript {
     extra.set("coroutines_version", "1.3.7")
     extra.set("koin_version", "2.1.5")
 
-
     repositories {
         google()
         jcenter()
@@ -19,6 +18,7 @@ buildscript {
 
     }
 }
+
 
 allprojects {
     repositories {

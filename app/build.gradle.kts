@@ -48,7 +48,15 @@ android {
         kotlinCompilerVersion = "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
         kotlinCompilerExtensionVersion = getLocalVersion("compose_version")
     }
-
+    packagingOptions {
+        exclude("META-INF/kotlinx-io.kotlin_module")
+        exclude("META-INF/atomicfu.kotlin_module")
+        exclude("META-INF/kotlinx-coroutines-io.kotlin_module")
+        exclude("META-INF/kotlinx-coroutines-core.kotlin_module")
+        exclude("META-INF/INDEX.LIST")
+        exclude("META-INF/io.netty.versions.properties")
+        exclude("META-INF/kotlinx-html.kotlin_module")
+    }
 
 }
 
@@ -58,9 +66,17 @@ dependencies {
     //core
     implementation(kotlin("stdlib", getLocalVersion("kotlin_version")))
     implementation("androidx.core", "core-ktx", "1.3.0")
-    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core",  getLocalVersion("coroutines_version"))
-    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-android",  getLocalVersion("coroutines_version"))
-    implementation (project(":server"))
+    implementation(
+        "org.jetbrains.kotlinx",
+        "kotlinx-coroutines-core",
+        getLocalVersion("coroutines_version")
+    )
+    implementation(
+        "org.jetbrains.kotlinx",
+        "kotlinx-coroutines-android",
+        getLocalVersion("coroutines_version")
+    )
+    implementation(project(":server"))
 
 
     //UI

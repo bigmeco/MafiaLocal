@@ -31,31 +31,9 @@ class MainActivity : AppCompatActivity() {
                 Host()
             }
         }
-        HostApi.httpServer
-        val httpServer = AsyncHttpServer()
-        httpServer.listen(AsyncServer.getDefault(), 8080)
-        httpServer.websocket(
-            "/live"
-        ) { webSocket, request ->
+        HostApi.start()
 
-            webSocket.setClosedCallback { ex ->
-                Log.d("WebSocket", "start")
 
-                try {
-                    if (ex != null)
-                        Log.e("WebSocket", "An error occurred", ex)
-                } finally {
-                }
-            }
-            webSocket.stringCallback = WebSocket.StringCallback { s ->
-                if ("Hello Server" == s) {
-                    webSocket.send("Welcome Client!")
-                    Log.d("WebSocket", "sent")
-
-                }
-            }
-
-        }
         getIPAddress{
             Log.d("WebSocket", it)
 
