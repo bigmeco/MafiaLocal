@@ -1,23 +1,26 @@
 plugins {
-    id("java-library")
-    id("kotlin")
+    id("com.android.library")
+    id("kotlin-android")
     id("koin")
  }
 
+
+
+android {
+    compileSdkVersion(29)
+    buildToolsVersion("30.0.0")
+
+    sourceSets {
+        val main by getting
+        main.java.srcDirs("src/kotlin")
+        main.manifest.srcFile("src/main/AndroidManifest.xml")
+        main.res.srcDirs("src/res")
+    }
+}
 dependencies {
     val getLocalVersion = rootProject.extra.get("version") as (String) -> String
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(kotlin("stdlib", getLocalVersion("kotlin_version")))
     implementation("com.koushikdutta.async", "androidasync", "3.0.9")
-    implementation("io.ktor", "ktor-server-core", "1.3.2")
-    implementation("io.ktor", "ktor-client-cio", "1.3.2")
-    implementation("io.ktor", "ktor-server-cio", "1.3.2")
-    implementation("io.ktor", "ktor-websockets", "1.3.2")
-    implementation("io.ktor", "ktor-server-netty", "1.3.2")
-    implementation("io.ktor", "ktor-html-builder", "1.3.2")
  }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
