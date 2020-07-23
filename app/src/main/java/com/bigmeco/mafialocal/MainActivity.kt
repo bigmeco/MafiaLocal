@@ -1,29 +1,26 @@
 package com.bigmeco.mafialocal
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.FloatRange
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
-import androidx.core.graphics.rotationMatrix
 import androidx.ui.core.*
 import androidx.ui.foundation.*
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.graphics.*
-import androidx.ui.graphics.drawscope.Stroke
-import androidx.ui.graphics.drawscope.rotate
-import androidx.ui.graphics.vectormath.rotation
+import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
-import androidx.ui.res.colorResource
-import androidx.ui.res.imageResource
 import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.TextUnit
 import androidx.ui.unit.dp
-import kotlinx.coroutines.selects.select
+import com.bigmeco.server.HostApi
+import com.koushikdutta.async.AsyncNetworkSocket
+import com.koushikdutta.async.AsyncServer
+import com.koushikdutta.async.http.WebSocket
+import com.koushikdutta.async.http.server.AsyncHttpServer
+import java.net.NetworkInterface
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,8 +31,37 @@ class MainActivity : AppCompatActivity() {
                 Host()
             }
         }
+        HostApi.start()
+
+
+        getIPAddress{
+            Log.d("WebSocket", it)
+
+
+        }
     }
 
+}
+
+
+private fun getIPAddress(listener: (String) -> Unit) {
+    try {
+        val interfaces = Collections.list(NetworkInterface.getNetworkInterfaces())
+        for (intf in interfaces) {
+            val address = Collections.list(intf.inetAddresses)
+            for (addr in address) {
+                println(
+                    "Display name: "
+                            + addr.hostAddress
+                )
+                if (addr.hostAddress.subSequence(0, 3) == "192" || addr.hostAddress.subSequence(0, 3) == "172") {
+                    listener.invoke(addr.hostAddress.toUpperCase())
+                }
+
+            }
+        }
+    } catch (ex: Exception) {
+    }
 }
 
 @Composable
